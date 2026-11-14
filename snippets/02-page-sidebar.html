@@ -1,0 +1,28 @@
+<!-- @snippet title="Страница с боковым меню" about="drawer + menu: на десктопе меню стоит постоянно, на телефоне выезжает по кнопке. Активный пункт — menu-active." mobile="true" -->
+<div class="drawer lg:drawer-open min-h-[480px] bg-base-100 text-base-content">
+  <input id="app-nav" type="checkbox" class="drawer-toggle">
+  <div class="drawer-content flex flex-col">
+    <div class="navbar border-b border-line gap-2 px-4">
+      <label for="app-nav" class="btn btn-ghost btn-sm lg:hidden" aria-label="Открыть меню">☰</label>
+      <h1 class="font-display text-lg font-semibold">Все идеи</h1>
+      <div class="ml-auto"><button class="btn btn-primary btn-sm">Записать идею</button></div>
+    </div>
+    <main class="p-6 flex flex-col gap-4">
+      <p class="text-muted">Здесь содержимое страницы.</p>
+    </main>
+  </div>
+  <div class="drawer-side z-20">
+    <label for="app-nav" class="drawer-overlay" aria-label="Закрыть меню"></label>
+    <aside class="min-h-full w-60 bg-base-200 border-r border-line flex flex-col">
+      <a class="flex items-center gap-2.5 px-5 h-16 font-display font-bold text-lg"><span class="size-2.5 rounded-sm bg-primary"></span>IdeaHub</a>
+      <ul class="menu w-full gap-0.5 px-3">
+        <li><a class="menu-active">Все идеи <span class="badge badge-sm ml-auto">24</span></a></li>
+        <li><a>В работе <span class="badge badge-sm ml-auto">3</span></a></li>
+        <li><a>Готово</a></li>
+        <li class="menu-title mt-4">Настройки</li>
+        <li><a>Общие правила</a></li>
+        <li><a>Шаблон проекта</a></li>
+      </ul>
+    </aside>
+  </div>
+</div>

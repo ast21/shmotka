@@ -1,0 +1,26 @@
+<!-- @snippet title="Прогресс" about="Полоса — progress, кольцо — radial-progress (--value), сегменты — ряд полосок Tailwind, этапы — steps." -->
+<div class="p-6 bg-base-100 text-base-content flex flex-col gap-6">
+  <div class="flex flex-col gap-2">
+    <div class="flex justify-between text-sm"><span>План MVP</span><span class="font-mono text-muted">2 / 6</span></div>
+    <progress class="progress progress-primary" value="33" max="100"></progress>
+  </div>
+  <div class="flex flex-col gap-2">
+    <div class="flex justify-between text-sm"><span>Задачи по версиям</span><span class="font-mono text-muted">4 / 7</span></div>
+    <div class="flex gap-1">
+      <span class="h-1.5 flex-1 rounded-sm bg-primary"></span><span class="h-1.5 flex-1 rounded-sm bg-primary"></span>
+      <span class="h-1.5 flex-1 rounded-sm bg-primary"></span><span class="h-1.5 flex-1 rounded-sm bg-primary"></span>
+      <span class="h-1.5 flex-1 rounded-sm bg-base-300"></span><span class="h-1.5 flex-1 rounded-sm bg-base-300"></span>
+      <span class="h-1.5 flex-1 rounded-sm bg-base-300"></span>
+    </div>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="radial-progress text-primary text-xs font-mono" style="--value:72; --size:3.5rem; --thickness:4px" role="progressbar" aria-valuenow="72">72%</div>
+    <div><div class="font-semibold">Бриф</div><div class="text-sm text-muted">Не хватает раздела «Деплой»</div></div>
+  </div>
+  <ul class="steps w-full">
+    <li class="step step-primary">Идея</li>
+    <li class="step step-primary">Бриф</li>
+    <li class="step">MVP</li>
+    <li class="step">Готово</li>
+  </ul>
+</div>

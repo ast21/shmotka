@@ -15,7 +15,8 @@ export function build(tokens) {
 
   // Accent: default and presets.
   const def = tokens.accent.presets[tokens.accent.default];
-  L.push('/* Акцент проекта. Свой цвет: :root { --shm-accent: #...; --shm-accent-light: #...; } (второй по желанию).');
+  L.push('/* Акцент проекта. Свой цвет: :root { --shm-accent: #...; --shm-accent-light: #...; } (второй по желанию),');
+  L.push('   цвет текста на акценте — --shm-accent-fg (по желанию). Telegram Mini App: shmotka/telegram.js.');
   L.push('   Готовые акценты: <html data-accent="ideahub|iskra|finance">. */');
   L.push(`:where(:root) { --shm-accent: ${def.dark}; }`);
   for (const [id, p] of Object.entries(tokens.accent.presets)) {
@@ -36,7 +37,9 @@ export function build(tokens) {
       ? '  --shm-primary: var(--shm-accent);'
       : `  --shm-primary: var(--shm-accent-light, color-mix(in oklab, var(--shm-accent) ${rule.percent}%, ${rule.with}));`);
     for (const [name, d] of Object.entries(theme.derived)) {
-      const v = d.value ?? `color-mix(in oklab, ${cssRef(d.mix)} ${d.percent}%, ${cssRef(d.with)})`;
+      let v = d.value ?? `color-mix(in oklab, ${cssRef(d.mix)} ${d.percent}%, ${cssRef(d.with)})`;
+      // Text on the accent can come from the project too (Telegram: button_text_color).
+      if (name === 'primary-fg') v = `var(--shm-accent-fg, ${v})`;
       L.push(`  --shm-${name}: ${v};`);
     }
     for (const [name, v] of Object.entries(theme.shadows)) L.push(`  --shm-${name}: ${v};`);
@@ -72,6 +75,18 @@ export function build(tokens) {
   for (const [name, r] of Object.entries(tokens.radius)) L.push(`  --radius-${name}: ${r.value};`);
   L.push('  --shadow-sm: var(--shm-shadow-sm);');
   L.push('  --shadow-lg: var(--shm-shadow-lg);');
+  L.push('}');
+  L.push('');
+
+  // Theme tuning, not a new class: a plain daisyUI button gets the system's control border
+  // (daisyUI derives it from the button's own fill, which disappears on a white surface).
+  const coloured = ['primary', 'secondary', 'accent', 'neutral', 'info', 'success', 'warning', 'error', 'ghost', 'link', 'soft', 'outline', 'dash', 'active']
+    .map((m) => `.btn-${m}`).join(', ');
+  L.push('/* Доводка daisyUI под правила системы. */');
+  L.push('@layer utilities {');
+  L.push(`  .btn:where(:not(${coloured}, :disabled, [disabled])) { border-color: var(--shm-border-strong); }`);
+  L.push('  /* Активный пункт меню — мягкая подложка акцента, а не тёмная заливка neutral. */');
+  L.push('  .menu { --menu-active-bg: var(--shm-primary-soft); --menu-active-fg: var(--shm-primary-text); }');
   L.push('}');
   L.push('');
 

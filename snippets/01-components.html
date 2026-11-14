@@ -1,0 +1,67 @@
+<!-- @snippet title="Компоненты daisyUI" about="Стандартные компоненты daisyUI в теме Шмотки: ничего своего, только классы daisyUI. Один акцент — btn-primary на экране одна." -->
+<div class="flex flex-col gap-6 p-6 bg-base-100 text-base-content">
+  <div class="flex flex-wrap gap-2">
+    <button class="btn btn-primary">Записать</button>
+    <button class="btn">Отмена</button>
+    <button class="btn btn-soft btn-primary">Мягкая</button>
+    <button class="btn btn-ghost">Призрачная</button>
+    <button class="btn btn-outline btn-error">Удалить</button>
+    <button class="btn btn-primary" disabled>Недоступна</button>
+  </div>
+  <div class="grid gap-4 sm:grid-cols-2">
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">Название</legend>
+      <input class="input w-full" placeholder="Например, Личные финансы">
+      <p class="label">Коротко, 2–4 слова</p>
+    </fieldset>
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">Статус</legend>
+      <select class="select w-full"><option>Идея</option><option>В работе</option><option>Готово</option></select>
+    </fieldset>
+    <fieldset class="fieldset sm:col-span-2">
+      <legend class="fieldset-legend">Описание</legend>
+      <textarea class="textarea w-full" placeholder="Что это, для кого, что должно уметь"></textarea>
+    </fieldset>
+  </div>
+  <div class="flex flex-wrap items-center gap-4">
+    <label class="label"><input type="checkbox" class="checkbox checkbox-primary" checked> Каркас</label>
+    <label class="label"><input type="checkbox" class="toggle toggle-primary" checked> Тёмная тема</label>
+    <label class="label"><input type="radio" name="r" class="radio radio-primary" checked> Месяц</label>
+    <label class="label"><input type="radio" name="r" class="radio radio-primary"> Год</label>
+    <span class="loading loading-spinner text-primary"></span>
+    <kbd class="kbd kbd-sm">⌘K</kbd>
+  </div>
+  <div class="flex flex-col gap-2">
+    <div role="alert" class="alert alert-success alert-soft"><span>Версия 0.1.0 выпущена.</span></div>
+    <div role="alert" class="alert alert-warning alert-soft"><span>Бриф заполнен не полностью: нет раздела «Деплой».</span></div>
+    <div role="alert" class="alert alert-error alert-soft"><span>Не получилось сохранить: нет связи. Попробуйте ещё раз.</span></div>
+  </div>
+  <div class="overflow-x-auto rounded-box border border-line bg-base-200">
+    <table class="table">
+      <thead><tr><th>#</th><th>Идея</th><th>Статус</th><th class="text-right">Готово</th></tr></thead>
+      <tbody>
+        <tr class="hover:bg-base-300"><td class="font-mono text-xs text-muted">12</td><td>Шмотка</td><td><span class="badge badge-soft badge-warning">В работе</span></td><td class="text-right font-mono">2/6</td></tr>
+        <tr class="hover:bg-base-300"><td class="font-mono text-xs text-muted">7</td><td>Личные финансы</td><td><span class="badge badge-soft badge-info">Запланировано</span></td><td class="text-right font-mono">0/5</td></tr>
+        <tr class="hover:bg-base-300"><td class="font-mono text-xs text-muted">1</td><td>IdeaHub</td><td><span class="badge badge-soft badge-success">Готово</span></td><td class="text-right font-mono">9/9</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex flex-wrap gap-2">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-sm">Меню ▾</div>
+      <ul tabindex="0" class="dropdown-content menu bg-base-200 rounded-box z-10 w-48 p-2 shadow-lg border border-line">
+        <li><a>Переименовать</a></li><li><a>Дублировать</a></li><li><a class="text-error">Удалить</a></li>
+      </ul>
+    </div>
+    <div class="tooltip" data-tip="Подсказка"><button class="btn btn-sm">Наведи</button></div>
+    <button class="btn btn-sm" onclick="document.getElementById('demo-modal').showModal()">Открыть окно</button>
+    <dialog id="demo-modal" class="modal">
+      <div class="modal-box">
+        <h3 class="font-display text-lg font-semibold">Удалить идею?</h3>
+        <p class="py-3 text-muted">Бриф, задачи и журнал удалятся без возможности восстановить.</p>
+        <div class="modal-action"><form method="dialog" class="flex gap-2"><button class="btn">Отмена</button><button class="btn btn-error">Удалить</button></form></div>
+      </div>
+      <form method="dialog" class="modal-backdrop"><button>закрыть</button></form>
+    </dialog>
+  </div>
+</div>

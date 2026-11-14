@@ -1,0 +1,40 @@
+<!-- @snippet title="Документ с оглавлением и панелью" about="Оглавление слева и панель справа скрываются кнопками; без JS — на чекбоксах и group-has. На узком экране колонки встают друг под друга. Чтобы запоминать выбор, сохраните состояние чекбоксов в localStorage (Alpine: x-model + $persist)." mobile="true" -->
+<div class="group bg-base-100 text-base-content p-6 flex flex-col gap-4">
+  <input id="doc-toc" type="checkbox" class="hidden" checked>
+  <input id="doc-panel" type="checkbox" class="hidden" checked>
+  <div class="flex flex-wrap items-center gap-2">
+    <h1 class="font-display text-2xl font-semibold mr-auto">Личные финансы</h1>
+    <label for="doc-toc" class="btn btn-sm group-has-[#doc-toc:checked]:btn-active">Содержание</label>
+    <label for="doc-panel" class="btn btn-sm group-has-[#doc-panel:checked]:btn-active">Панель</label>
+  </div>
+  <div class="flex flex-wrap items-start gap-6">
+    <nav class="hidden group-has-[#doc-toc:checked]:block basis-56 grow min-w-44 lg:grow-0">
+      <ul class="menu menu-sm w-full p-0">
+        <li><a class="menu-active" href="#problem">Проблема</a></li>
+        <li><a href="#value">Ценность</a></li>
+        <li><a href="#mvp">Функции MVP</a></li>
+        <li><a href="#stack">Стек</a></li>
+      </ul>
+    </nav>
+    <main class="grow-[999] basis-[480px] min-w-0 flex flex-col gap-8">
+      <section id="problem" class="flex flex-col gap-2 scroll-mt-6">
+        <h2 class="font-display text-lg font-semibold">Проблема</h2>
+        <p class="max-w-prose">Деньги лежат в разных банках и валютах, общей картины нет.</p>
+      </section>
+      <section id="value" class="flex flex-col gap-2 scroll-mt-6">
+        <h2 class="font-display text-lg font-semibold">Ценность</h2>
+        <p class="max-w-prose">Все кошельки и валюты в одном месте, итог в рублях.</p>
+      </section>
+    </main>
+    <aside class="hidden group-has-[#doc-panel:checked]:flex basis-80 grow lg:grow-0 min-w-0 flex-col gap-3">
+      <div class="card bg-base-200 border border-line"><div class="card-body p-5 gap-3">
+        <div class="font-mono text-xs uppercase tracking-widest text-muted">План MVP</div>
+        <progress class="progress progress-primary" value="2" max="6"></progress>
+        <ul class="flex flex-col gap-2 text-sm">
+          <li class="flex gap-2"><input type="checkbox" class="checkbox checkbox-sm checkbox-success" checked> <span class="line-through text-muted">Каркас</span></li>
+          <li class="flex gap-2"><input type="checkbox" class="checkbox checkbox-sm"> Кошельки и валюты</li>
+        </ul>
+      </div></div>
+    </aside>
+  </div>
+</div>
