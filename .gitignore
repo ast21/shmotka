@@ -18,3 +18,5 @@ __pycache__/
 .venv/
 vendor/
 *.log
+
+# css/ is generated but committed: projects install Шмотка straight from a git tag
