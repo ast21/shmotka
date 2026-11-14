@@ -8,6 +8,27 @@ import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { ROOT } from '../scripts/lib/tokens.mjs';
 
+function withProject(fn) {
+  const dir = mkdtempSync(join(tmpdir(), 'shmotka-consumer-'));
+  try {
+    mkdirSync(join(dir, 'node_modules'));
+    symlinkSync(ROOT, join(dir, 'node_modules', 'shmotka'));
+    return fn(dir);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+test('проект импортирует shmotka/telegram и tokens.json по именам пакета', () => {
+  const out = withProject((dir) => {
+    writeFileSync(join(dir, 'probe.mjs'),
+      "const t = await import('shmotka/telegram'); const j = await import('shmotka/tokens.json', { with: { type: 'json' } });"
+      + "console.log(typeof t.connectTelegram, j.default.name);");
+    return execFileSync(process.execPath, ['probe.mjs'], { cwd: dir, encoding: 'utf8' }).trim();
+  });
+  assert.equal(out, 'function Шмотка');
+});
+
 function compile(projectCss, html) {
   const dir = mkdtempSync(join(tmpdir(), 'shmotka-consumer-'));
   try {

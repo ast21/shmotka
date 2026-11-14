@@ -1,4 +1,4 @@
-/* Шмотка — сгенерировано из tokens/tokens.json скриптом scripts/build.mjs. Не править руками. */
+/* Шмотка — сгенерировано из package/tokens/tokens.json скриптом scripts/build.mjs. Не править руками. */
 /* Подключение: @import "tailwindcss"; @plugin "daisyui" { themes: false; } @import "shmotka"; */
 
 /* Акцент проекта. Свой цвет: :root { --shm-accent: #...; --shm-accent-light: #...; } (второй по желанию),

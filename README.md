@@ -9,7 +9,7 @@
 ## Подключение
 
 ```bash
-npm i tailwindcss daisyui github:ast21/shmotka#v0.2.0
+npm i tailwindcss daisyui github:ast21/shmotka#v0.2.1
 ```
 
 В главном CSS проекта:
@@ -29,11 +29,11 @@ npm i tailwindcss daisyui github:ast21/shmotka#v0.2.0
 Обновление — сменить тег в `package.json` (`#v0.3.0`) и `npm i`.
 
 **Витрина** со всеми компонентами и фрагментами в обеих темах, переключателем акцента и кнопкой «скопировать код» —
-https://shmotka.pages.dev (собирается `npm run site` в `site/dist`).
+https://shmotka.pages.dev (собирается `npm run showcase` в `showcase/dist`).
 
 ### Laravel (Vite)
 
-`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.2.0`, в `vite.config.js` — плагин `tailwindcss()`,
+`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.2.1`, в `vite.config.js` — плагин `tailwindcss()`,
 в `resources/css/app.css` — три строки выше. В `layouts/app.blade.php`: `<html data-theme="shmotka-dark" data-accent="finance">`,
 шрифты и `@vite('resources/css/app.css')`.
 
@@ -77,7 +77,7 @@ connectTelegram({ telegramAccent: false });  // акцент проекта, т�
 }
 ```
 
-Правило: акцент на фоне — не меньше 4.5:1 в обеих темах. Новый пресет добавляется в `tokens/tokens.json` — проверка контраста в CI проверит его сама.
+Правило: акцент на фоне — не меньше 4.5:1 в обеих темах. Новый пресет добавляется в `package/tokens/tokens.json` — проверка контраста в CI проверит его сама.
 
 ## Что даёт Шмотка
 
@@ -89,21 +89,37 @@ connectTelegram({ telegramAccent: false });  // акцент проекта, т�
 - **CSS-переменные** `--shm-*` для своих стилей: `--shm-bg`, `--shm-surface`, `--shm-fg-muted`, `--shm-primary-soft`, `--shm-sidebar-w`…
 
 - **Доводка daisyUI** под правила системы: у обычной кнопки рамка как у полей, активный пункт меню — мягкая подложка акцента.
-- **Шпаргалка** `snippets/*.html` — готовые фрагменты только на классах daisyUI и Tailwind: компоненты, страница с боковым меню,
+- **Шпаргалка** `package/snippets/*.html` — готовые фрагменты только на классах daisyUI и Tailwind: компоненты, страница с боковым меню,
   документ со скрываемыми оглавлением и панелью, счётчики, статусы и фильтры, прогресс (полоса, сегменты, кольцо, этапы),
   карта активности, переключатель вида, пустое состояние, уведомление, история версий, мобильный экран.
-- **Правила для нейронок** `docs/ai.md` — скопируйте в `CLAUDE.md` проекта (или сошлитесь на `node_modules/shmotka/docs/ai.md`).
+- **Правила для нейронок** `package/docs/ai.md` — скопируйте в `CLAUDE.md` проекта (или сошлитесь на `node_modules/shmotka/package/docs/ai.md`).
 
 ## Как устроено
 
-- `tokens/tokens.json` — единственный источник: цвета обеих тем, акценты, шрифты, скругления, пары для проверки контраста.
-- `scripts/build.mjs` собирает из него `css/shmotka.css` (файл в репозитории, руками не правится): `npm run build`.
-- `scripts/check-contrast.mjs` проверяет контраст 4.5:1 (текст) и 3:1 (элементы) в обеих темах для каждого акцента.
-- `js/telegram.js` — связка с Telegram Mini App.
-- `snippets/` + `docs/ai.md` → `scripts/build-site.mjs` → витрина `site/dist` (деплой на Cloudflare Pages — `.github/workflows/pages.yml`
-  после мержа в `main`, нужны секреты `CLOUDFLARE_API_TOKEN` и `CLOUDFLARE_ACCOUNT_ID`).
-- `test/` — цветовая математика, связка с Telegram, правила шпаргалки и настоящие сборки Tailwind + daisyUI.
-- Все проверки: `npm run check` (то же запускает CI).
+Три части — в трёх папках:
+
+```
+shmotka/
+├── package/            ← пакет: только это получает проект при npm i
+│   ├── tokens/tokens.json   единственный источник цветов, шрифтов, скруглений, акцентов
+│   ├── css/shmotka.css      тема (генерируется из tokens.json, руками не править)
+│   ├── js/telegram.js       связка с Telegram Mini App
+│   ├── snippets/*.html      шпаргалка готовых фрагментов
+│   └── docs/ai.md           правила для нейронок
+├── showcase/           ← витрина https://shmotka.pages.dev
+│   ├── build.mjs            собирает dist/ из шпаргалки и правил
+│   ├── app.css              подключает тему так же, как проект
+│   └── dist/                готовый сайт (не в git)
+├── scripts/            ← инструменты темы
+│   ├── build.mjs            tokens.json → css/shmotka.css (npm run build)
+│   ├── check-contrast.mjs   контраст 4.5:1 / 3:1 в обеих темах для каждого акцента
+│   ├── lib/tokens.mjs       общая цветовая математика
+│   └── check.sh             все проверки (npm run check, его же запускает CI)
+└── test/               ← цвета, Telegram, правила шпаргалки, настоящие сборки Tailwind + daisyUI
+```
+
+Витрина выкладывается на Cloudflare Pages после каждого мержа в `main` (`.github/workflows/pages.yml`,
+секреты `CLOUDFLARE_API_TOKEN` и `CLOUDFLARE_ACCOUNT_ID`).
 
 ## Версии
 

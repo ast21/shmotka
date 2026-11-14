@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { connectTelegram } from '../js/telegram.js';
+import { connectTelegram } from '../package/js/telegram.js';
 
 function fakeEnv(colorScheme, themeParams) {
   const props = new Map();

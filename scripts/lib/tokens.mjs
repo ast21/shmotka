@@ -7,7 +7,7 @@ import { dirname, join } from 'node:path';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 
-export function loadTokens(path = join(ROOT, 'tokens', 'tokens.json')) {
+export function loadTokens(path = join(ROOT, 'package', 'tokens', 'tokens.json')) {
   return JSON.parse(readFileSync(path, 'utf8'));
 }
 
@@ -72,7 +72,7 @@ export function contrast(fg, bg) {
 
 /**
  * Concrete colours of one theme for one accent, exactly as the browser computes them
- * from css/shmotka.css. `accent` is {dark, light?}; a missing light value is derived.
+ * from package/css/shmotka.css. `accent` is {dark, light?}; a missing light value is derived.
  */
 export function resolveTheme(tokens, themeKey, accent) {
   const theme = tokens.themes[themeKey];

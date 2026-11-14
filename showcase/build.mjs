@@ -1,14 +1,14 @@
-// Builds the showcase into site/dist: index.html from snippets/*.html and docs/ai.md,
+// Builds the showcase into showcase/dist: index.html from package/snippets/*.html and package/docs/ai.md,
 // app.css compiled by Tailwind + daisyUI with the theme, exactly as a project would.
-//   node scripts/build-site.mjs
+//   npm run showcase
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { ROOT, loadTokens } from './lib/tokens.mjs';
+import { ROOT, loadTokens } from '../scripts/lib/tokens.mjs';
 
-const DIST = join(ROOT, 'site', 'dist');
+const DIST = join(ROOT, 'showcase', 'dist');
 
-export function readSnippets(dir = join(ROOT, 'snippets')) {
+export function readSnippets(dir = join(ROOT, 'package', 'snippets')) {
   return readdirSync(dir).filter((f) => f.endsWith('.html')).sort().map((file) => {
     const src = readFileSync(join(dir, file), 'utf8');
     const m = /^<!--\s*@snippet\s+(.*?)\s*-->\n/s.exec(src);
@@ -36,7 +36,7 @@ export function renderPage({ snippets, ai, tokens, version }) {
       <section id="${s.id}" class="flex flex-col gap-3 scroll-mt-20">
         <div class="flex flex-wrap items-baseline gap-x-3">
           <h2 class="font-display text-xl font-semibold">${esc(s.title)}</h2>
-          <span class="font-mono text-xs text-muted">snippets/${s.file}</span>
+          <span class="font-mono text-xs text-muted">package/snippets/${s.file}</span>
         </div>
         <p class="text-muted max-w-prose">${esc(s.about)}</p>
         <div class="rounded-box border border-line overflow-hidden bg-base-300 flex justify-center">
@@ -117,7 +117,7 @@ export function renderPage({ snippets, ai, tokens, version }) {
 
       <section id="ai" class="flex flex-col gap-3 scroll-mt-20">
         <h2 class="font-display text-xl font-semibold">Для нейронок</h2>
-        <p class="text-muted max-w-prose">Скопируйте в <code class="font-mono text-sm">CLAUDE.md</code> проекта — нейронка будет собирать интерфейс в стиле Шмотки. Файл также лежит в пакете: <code class="font-mono text-sm">node_modules/shmotka/docs/ai.md</code>.</p>
+        <p class="text-muted max-w-prose">Скопируйте в <code class="font-mono text-sm">CLAUDE.md</code> проекта — нейронка будет собирать интерфейс в стиле Шмотки. Файл также лежит в пакете: <code class="font-mono text-sm">node_modules/shmotka/package/docs/ai.md</code>.</p>
         <details class="collapse collapse-arrow border border-line bg-base-200">
           <summary class="collapse-title text-sm font-medium">Правила для нейронки</summary>
           <div class="collapse-content">${block('code-ai', ai, 'md')}</div>
@@ -199,12 +199,12 @@ export function buildSite() {
   const tokens = loadTokens();
   const { version } = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
   const snippets = readSnippets();
-  const ai = readFileSync(join(ROOT, 'docs', 'ai.md'), 'utf8');
+  const ai = readFileSync(join(ROOT, 'package', 'docs', 'ai.md'), 'utf8');
   rmSync(DIST, { recursive: true, force: true });
   mkdirSync(DIST, { recursive: true });
   writeFileSync(join(DIST, 'index.html'), renderPage({ snippets, ai, tokens, version }));
   const cli = join(ROOT, 'node_modules', '@tailwindcss', 'cli', 'dist', 'index.mjs');
-  execFileSync(process.execPath, [cli, '-i', join(ROOT, 'site', 'app.css'), '-o', join(DIST, 'app.css'), '--minify'], { cwd: ROOT, stdio: 'pipe' });
+  execFileSync(process.execPath, [cli, '-i', join(ROOT, 'showcase', 'app.css'), '-o', join(DIST, 'app.css'), '--minify'], { cwd: ROOT, stdio: 'pipe' });
   return { dist: DIST, snippets };
 }
 
