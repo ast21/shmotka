@@ -1,0 +1,19 @@
+<!-- @snippet title="Переключатель вида и вкладки" about="Переключатель вида — tabs tabs-box (или join из кнопок), вкладки раздела — tabs tabs-border. Выбранное — tab-active." -->
+<div class="p-6 bg-base-100 text-base-content flex flex-col gap-5">
+  <div role="tablist" class="tabs tabs-box tabs-sm w-fit">
+    <a role="tab" class="tab tab-active">Карточки</a>
+    <a role="tab" class="tab">Таблица</a>
+    <a role="tab" class="tab">Доска</a>
+  </div>
+  <div class="join">
+    <button class="btn btn-sm join-item btn-active">Неделя</button>
+    <button class="btn btn-sm join-item">Месяц</button>
+    <button class="btn btn-sm join-item">Год</button>
+  </div>
+  <div role="tablist" class="tabs tabs-border">
+    <a role="tab" class="tab tab-active">Бриф</a>
+    <a role="tab" class="tab">План</a>
+    <a role="tab" class="tab">Версии</a>
+    <a role="tab" class="tab">Журнал</a>
+  </div>
+</div>

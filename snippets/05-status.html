@@ -1,0 +1,21 @@
+<!-- @snippet title="Статусы и фильтры" about="Статус — мягкий бейдж с точкой (badge-soft + status) и словом, не только цветом. Фильтры — filter: выбранный вариант заливается акцентом." -->
+<div class="p-6 bg-base-100 text-base-content flex flex-col gap-5">
+  <div class="flex flex-wrap gap-2">
+    <span class="badge badge-soft gap-1.5 text-status-idea"><span class="status bg-status-idea"></span>Идея</span>
+    <span class="badge badge-soft badge-info gap-1.5"><span class="status status-info"></span>Запланировано</span>
+    <span class="badge badge-soft badge-warning gap-1.5"><span class="status status-warning"></span>В работе</span>
+    <span class="badge badge-soft badge-success gap-1.5"><span class="status status-success"></span>Готово</span>
+    <span class="badge badge-soft gap-1.5 text-muted"><span class="status bg-subtle"></span>Отброшено</span>
+  </div>
+  <form class="filter">
+    <input class="btn btn-sm btn-square" type="reset" value="×" aria-label="Сбросить">
+    <input class="btn btn-sm" type="radio" name="status" aria-label="Все · 24">
+    <input class="btn btn-sm" type="radio" name="status" aria-label="В работе · 3">
+    <input class="btn btn-sm" type="radio" name="status" aria-label="Готово · 9">
+  </form>
+  <div class="flex flex-wrap gap-1.5">
+    <span class="badge badge-sm font-mono">telegram</span>
+    <span class="badge badge-sm font-mono">ai</span>
+    <span class="font-mono text-xs font-medium text-success">v0.1.0</span>
+  </div>
+</div>

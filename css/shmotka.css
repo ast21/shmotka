@@ -1,7 +1,8 @@
 /* Шмотка — сгенерировано из tokens/tokens.json скриптом scripts/build.mjs. Не править руками. */
 /* Подключение: @import "tailwindcss"; @plugin "daisyui" { themes: false; } @import "shmotka"; */
 
-/* Акцент проекта. Свой цвет: :root { --shm-accent: #...; --shm-accent-light: #...; } (второй по желанию).
+/* Акцент проекта. Свой цвет: :root { --shm-accent: #...; --shm-accent-light: #...; } (второй по желанию),
+   цвет текста на акценте — --shm-accent-fg (по желанию). Telegram Mini App: shmotka/telegram.js.
    Готовые акценты: <html data-accent="ideahub|iskra|finance">. */
 :where(:root) { --shm-accent: #8b7dff; }
 [data-accent="ideahub"] { --shm-accent: #8b7dff; --shm-accent-light: #5b4bdb; } /* IdeaHub, фиолетовый */
@@ -41,7 +42,7 @@
   --shm-heat-4: #39d353;
   --shm-overlay: #05060acc;
   --shm-primary: var(--shm-accent);
-  --shm-primary-fg: #0d0f14;
+  --shm-primary-fg: var(--shm-accent-fg, #0d0f14);
   --shm-primary-soft: color-mix(in oklab, var(--shm-primary) 18%, var(--shm-bg));
   --shm-primary-text: color-mix(in oklab, var(--shm-primary) 65%, #ffffff);
   --shm-shadow-sm: 0 1px 0 #00000066;
@@ -110,7 +111,7 @@
   --shm-heat-4: #216e39;
   --shm-overlay: #12151d66;
   --shm-primary: var(--shm-accent-light, color-mix(in oklab, var(--shm-accent) 72%, #000000));
-  --shm-primary-fg: #ffffff;
+  --shm-primary-fg: var(--shm-accent-fg, #ffffff);
   --shm-primary-soft: color-mix(in oklab, var(--shm-primary) 12%, #ffffff);
   --shm-primary-text: color-mix(in oklab, var(--shm-primary) 88%, #000000);
   --shm-shadow-sm: 0 1px 2px #12151d14;
@@ -173,6 +174,13 @@
   --radius-pill: 999px;
   --shadow-sm: var(--shm-shadow-sm);
   --shadow-lg: var(--shm-shadow-lg);
+}
+
+/* Доводка daisyUI под правила системы. */
+@layer utilities {
+  .btn:where(:not(.btn-primary, .btn-secondary, .btn-accent, .btn-neutral, .btn-info, .btn-success, .btn-warning, .btn-error, .btn-ghost, .btn-link, .btn-soft, .btn-outline, .btn-dash, .btn-active, :disabled, [disabled])) { border-color: var(--shm-border-strong); }
+  /* Активный пункт меню — мягкая подложка акцента, а не тёмная заливка neutral. */
+  .menu { --menu-active-bg: var(--shm-primary-soft); --menu-active-fg: var(--shm-primary-text); }
 }
 
 :root {

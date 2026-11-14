@@ -1,0 +1,21 @@
+<!-- @snippet title="Мобильный экран" about="Как в Искре: крупные карточки rounded-xl (22px) на фоне, мягкие цветные подложки, нижняя навигация dock. В проекте уберите absolute у dock — он прикреплён к низу экрана." mobile="true" -->
+<div class="relative min-h-[560px] bg-base-100 text-base-content">
+  <main class="mx-auto max-w-xl px-4 pt-4 pb-24 flex flex-col gap-3.5">
+    <h1 class="font-display text-2xl font-bold">Сегодня</h1>
+    <div class="rounded-xl bg-base-200 p-5 flex flex-col gap-2">
+      <div class="font-mono text-xs uppercase tracking-widest text-muted">Привычки</div>
+      <div class="font-display text-3xl font-semibold">4 <span class="text-base font-medium text-muted">из 6</span></div>
+      <progress class="progress progress-primary" value="4" max="6"></progress>
+    </div>
+    <div class="rounded-xl bg-primary-soft p-5 flex flex-col gap-1">
+      <div class="font-semibold text-primary-text">Следующий шаг</div>
+      <p class="text-sm">Вечерняя прогулка, 20 минут</p>
+    </div>
+    <div class="rounded-xl bg-success-soft p-5"><span class="font-semibold text-success">Серия 12 дней</span></div>
+  </main>
+  <div class="dock dock-sm absolute bg-base-200 border-t border-line">
+    <button class="dock-active"><span class="dock-label">Сегодня</span></button>
+    <button><span class="dock-label">Привычки</span></button>
+    <button><span class="dock-label">Итоги</span></button>
+  </div>
+</div>

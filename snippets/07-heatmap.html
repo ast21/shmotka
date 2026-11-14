@@ -1,0 +1,30 @@
+<!-- @snippet title="Карта активности" about="Сетка Tailwind: grid-flow-col и 7 строк — колонка на неделю. Уровень дня — bg-heat-0…4. В шаблоне генерируйте ячейки циклом: Blade @foreach, React .map." -->
+<div class="p-6 bg-base-100 text-base-content flex flex-col gap-3">
+  <div class="flex items-baseline justify-between">
+    <h3 class="font-display font-semibold">Активность</h3>
+    <span class="font-mono text-xs text-muted">16 недель</span>
+  </div>
+  <div class="overflow-x-auto">
+    <div class="grid grid-flow-col grid-rows-7 auto-cols-max gap-[3px] w-max" role="img" aria-label="Карта активности за 16 недель">
+      <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-0"></i>
+      <i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-3"></i>
+      <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-4"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-4"></i>
+      <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-3"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-3"></i>
+      <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i>
+      <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-0"></i>
+      <i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-3"></i><i class="size-3 rounded-sm bg-heat-2"></i>
+      <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-4"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i>
+      <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-3"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-2"></i>
+      <i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-3"></i><i class="size-3 rounded-sm bg-heat-4"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-2"></i>
+      <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-4"></i><i class="size-3 rounded-sm bg-heat-3"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i>
+      <i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-2"></i>
+      <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-3"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i>
+      <i class="size-3 rounded-sm bg-heat-3"></i><i class="size-3 rounded-sm bg-heat-3"></i><i class="size-3 rounded-sm bg-heat-3"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-3"></i>
+      <i class="size-3 rounded-sm bg-heat-4"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i>
+      <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-4"></i><i class="size-3 rounded-sm bg-heat-2"></i>
+    </div>
+  </div>
+  <div class="flex items-center gap-1 text-xs text-muted">меньше
+    <i class="size-3 rounded-sm bg-heat-0"></i><i class="size-3 rounded-sm bg-heat-1"></i><i class="size-3 rounded-sm bg-heat-2"></i><i class="size-3 rounded-sm bg-heat-3"></i><i class="size-3 rounded-sm bg-heat-4"></i>
+  больше</div>
+</div>

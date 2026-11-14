@@ -1,7 +1,7 @@
 {
   "name": "shmotka",
-  "version": "0.1.0",
-  "description": "Шмотка — тема и дополнения daisyUI для личных проектов: общий вид, под проект меняется только акцент.",
+  "version": "0.2.0",
+  "description": "Шмотка — тема daisyUI и шпаргалка готовых фрагментов для личных проектов: общий вид, под проект меняется только акцент.",
   "private": true,
   "type": "module",
   "repository": "github:ast21/shmotka",
@@ -11,15 +11,20 @@
       "style": "./css/shmotka.css",
       "default": "./css/shmotka.css"
     },
+    "./telegram": "./js/telegram.js",
     "./tokens.json": "./tokens/tokens.json",
     "./package.json": "./package.json"
   },
   "files": [
     "css",
-    "tokens"
+    "js",
+    "tokens",
+    "snippets",
+    "docs"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
+    "site": "node scripts/build-site.mjs",
     "check": "bash scripts/check.sh"
   },
   "peerDependencies": {
