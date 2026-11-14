@@ -4,14 +4,14 @@
 - Что это: тема и шпаргалка готовых фрагментов daisyUI для личных проектов (идея #12 в IdeaHub). Общий вид для всех проектов,
   под проект меняется только акцент. Tailwind и daisyUI проект ставит сам — Шмотка их не содержит.
 - Стек: Node 22, без рантайм-зависимостей. Tailwind CSS v4 + daisyUI 5 — peer- и dev-зависимости.
-- Три папки: `package/` — то, что получает проект (поле `files`), `showcase/` — витрина, `scripts/` — инструменты темы.
-- Источник правды — `package/tokens/tokens.json`. `package/css/shmotka.css` генерируется `npm run build` и коммитится
+- Пакет — папки в корне из поля `files` (`css`, `js`, `tokens`, `snippets`, `docs`); `showcase/` — витрина, `scripts/` — инструменты темы.
+- Источник правды — `tokens/tokens.json`. `css/shmotka.css` генерируется `npm run build` и коммитится
   (проекты ставят пакет прямо из GitHub-тега, сборки при установке нет). Руками его не править.
-- Проверки: `npm ci && npm run check` — актуальность `package/css/shmotka.css`, контраст в обеих темах для каждого акцента, тесты.
-- Новый цвет или акцент — только через `package/tokens/tokens.json`; контраст ниже 4.5:1 для текста CI не пропустит.
-- Шпаргалка `package/snippets/*.html`: первая строка `<!-- @snippet title="…" about="…" -->`, только классы daisyUI, Tailwind и утилиты Шмотки —
+- Проверки: `npm ci && npm run check` — актуальность `css/shmotka.css`, контраст в обеих темах для каждого акцента, тесты.
+- Новый цвет или акцент — только через `tokens/tokens.json`; контраст ниже 4.5:1 для текста CI не пропустит.
+- Шпаргалка `snippets/*.html`: первая строка `<!-- @snippet title="…" about="…" -->`, только классы daisyUI, Tailwind и утилиты Шмотки —
   без `<style>`, hex-цветов и палитры Tailwind (проверяет `test/snippets.test.mjs`). Новый фрагмент сам попадает на витрину.
-- Правила для нейронок проектов — `package/docs/ai.md`; меняется вместе с темой и шпаргалкой.
+- Правила для нейронок проектов — `docs/ai.md`; меняется вместе с темой и шпаргалкой.
 - Деплой: релиз = тег `vX.Y.Z`; проекты подключают `npm i github:ast21/shmotka#vX.Y.Z`.
   Витрина `npm run showcase` → `showcase/dist` → Cloudflare Pages, проект `shmotka` (https://shmotka.pages.dev), `.github/workflows/pages.yml` после мержа.
 

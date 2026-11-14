@@ -1,15 +1,15 @@
-// Builds package/css/shmotka.css from package/tokens/tokens.json.
+// Builds css/shmotka.css from tokens/tokens.json.
 //   node scripts/build.mjs          write the file
 //   node scripts/build.mjs --check  fail if the committed file is out of date
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, loadTokens } from './lib/tokens.mjs';
 
-const OUT = join(ROOT, 'package', 'css', 'shmotka.css');
+const OUT = join(ROOT, 'css', 'shmotka.css');
 
 export function build(tokens) {
   const L = [];
-  L.push('/* Шмотка — сгенерировано из package/tokens/tokens.json скриптом scripts/build.mjs. Не править руками. */');
+  L.push('/* Шмотка — сгенерировано из tokens/tokens.json скриптом scripts/build.mjs. Не править руками. */');
   L.push('/* Подключение: @import "tailwindcss"; @plugin "daisyui" { themes: false; } @import "shmotka"; */');
   L.push('');
 
@@ -112,12 +112,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     let current = '';
     try { current = readFileSync(OUT, 'utf8'); } catch {}
     if (current !== css) {
-      console.error('package/css/shmotka.css устарел: запустите npm run build и закоммитьте результат.');
+      console.error('css/shmotka.css устарел: запустите npm run build и закоммитьте результат.');
       process.exit(1);
     }
-    console.log('package/css/shmotka.css актуален');
+    console.log('css/shmotka.css актуален');
   } else {
-    mkdirSync(join(ROOT, 'package', 'css'), { recursive: true });
+    mkdirSync(join(ROOT, 'css'), { recursive: true });
     writeFileSync(OUT, css);
     console.log(`Записан ${OUT}`);
   }

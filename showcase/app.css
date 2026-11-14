@@ -1,6 +1,6 @@
 /* Витрина подключает Шмотку так же, как проект. */
 @import "tailwindcss" source(none);
 @plugin "daisyui" { themes: false; }
-@import "../package/css/shmotka.css";
+@import "../css/shmotka.css";
 @source "./dist/index.html";
-@source "../package/snippets";
+@source "../snippets";

@@ -5,18 +5,22 @@
   "private": true,
   "type": "module",
   "repository": "github:ast21/shmotka",
-  "style": "package/css/shmotka.css",
+  "style": "css/shmotka.css",
   "exports": {
     ".": {
-      "style": "./package/css/shmotka.css",
-      "default": "./package/css/shmotka.css"
+      "style": "./css/shmotka.css",
+      "default": "./css/shmotka.css"
     },
-    "./telegram": "./package/js/telegram.js",
-    "./tokens.json": "./package/tokens/tokens.json",
+    "./telegram": "./js/telegram.js",
+    "./tokens.json": "./tokens/tokens.json",
     "./package.json": "./package.json"
   },
   "files": [
-    "package"
+    "css",
+    "js",
+    "tokens",
+    "snippets",
+    "docs"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
