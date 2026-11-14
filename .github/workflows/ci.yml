@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: CHANGELOG has a well-formed top entry
+        run: python .github/scripts/release_notes.py plan | tail -n 1 | grep -E '^[0-9]+\.[0-9]+\.[0-9]+'
+      - name: PR bumps the version
+        # In the template itself the version lives in TEMPLATE.md, not CHANGELOG.md.
+        if: github.event_name == 'pull_request' && !github.event.repository.is_template && github.event.repository.name != 'ideahub-project-template'
+        run: |
+          git fetch --depth=1 origin "${{ github.base_ref }}"
+          old=$(git show FETCH_HEAD:CHANGELOG.md | grep -m1 '^## ' || true)
+          new=$(grep -m1 '^## ' CHANGELOG.md)
+          if [ "$old" = "$new" ]; then echo "::error::Add a new top entry to CHANGELOG.md (one PR = one version)"; exit 1; fi
+      # Project checks (tests, linter, typecheck). Install the toolchain here once the stack is chosen,
+      # e.g. actions/setup-node, actions/setup-python or shivammathur/setup-php, then keep scripts/check.sh up to date.
+      - name: Project checks
+        run: bash scripts/check.sh

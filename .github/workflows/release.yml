@@ -1,0 +1,39 @@
+name: Release
+
+# After a merge to main that touches CHANGELOG.md: create a tag vX.Y.Z and a
+# GitHub release for every changelog version that has none yet (the top entry
+# on this commit, older ones on the commits listed in .github/release-commits.txt).
+# Does nothing in the template repository itself: its own versions live in TEMPLATE.md.
+on:
+  push:
+    branches: [main]
+    paths: [CHANGELOG.md, .github/release-commits.txt]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    # Skip in the template itself (by flag and by name, in case the flag is not set yet).
+    if: ${{ !github.event.repository.is_template && github.event.repository.name != 'ideahub-project-template' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create missing releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python .github/scripts/release_notes.py plan > plan.tsv
+          top=$(tail -n 1 plan.tsv | cut -f1)
+          while IFS=$'\t' read -r version sha title; do
+            tag="v$version"
+            if gh release view "$tag" >/dev/null 2>&1; then
+              echo "$tag: already released"
+              continue
+            fi
+            python .github/scripts/release_notes.py notes "$version" > notes.md
+            latest=false; [ "$version" = "$top" ] && latest=true
+            gh release create "$tag" --target "$sha" --title "$title" --notes-file notes.md --latest=$latest
+            echo "$tag: released on $sha"
+          done < plan.tsv
