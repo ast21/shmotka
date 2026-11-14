@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # All project checks in one place: CI runs this script on every PR.
-# Replace the placeholder with the real commands once the stack is chosen, e.g.:
-#   npm run typecheck && npm test
-#   ruff check . && python -m pytest -q
-#   php artisan test
 set -euo pipefail
-echo "No project checks yet — fill in scripts/check.sh"
+cd "$(dirname "$0")/.."
+node scripts/build.mjs --check     # css/shmotka.css matches tokens/tokens.json
+node scripts/check-contrast.mjs    # WCAG contrast in both themes for every accent
+node --test test/*.test.mjs        # colour maths + a real Tailwind/daisyUI build of a consumer project

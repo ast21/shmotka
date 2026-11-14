@@ -1,0 +1,182 @@
+/* Шмотка — сгенерировано из tokens/tokens.json скриптом scripts/build.mjs. Не править руками. */
+/* Подключение: @import "tailwindcss"; @plugin "daisyui" { themes: false; } @import "shmotka"; */
+
+/* Акцент проекта. Свой цвет: :root { --shm-accent: #...; --shm-accent-light: #...; } (второй по желанию).
+   Готовые акценты: <html data-accent="ideahub|iskra|finance">. */
+:where(:root) { --shm-accent: #8b7dff; }
+[data-accent="ideahub"] { --shm-accent: #8b7dff; --shm-accent-light: #5b4bdb; } /* IdeaHub, фиолетовый */
+[data-accent="iskra"] { --shm-accent: #5aa9ff; --shm-accent-light: #1f74ba; } /* Искра, синий */
+[data-accent="finance"] { --shm-accent: #3ccfb4; --shm-accent-light: #0f7f6c; } /* Личные финансы, бирюзовый */
+
+@plugin "daisyui/theme" {
+  name: "shmotka-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --shm-bg: #0d0f14;
+  --shm-surface: #12151d;
+  --shm-surface-2: #1a1e2a;
+  --shm-fg: #e7e9f0;
+  --shm-fg-muted: #9097a8;
+  --shm-fg-subtle: #6b7186;
+  --shm-border: #1e2230;
+  --shm-border-strong: #2c3244;
+  --shm-neutral: #2c3244;
+  --shm-neutral-fg: #e7e9f0;
+  --shm-on-color: #0d0f14;
+  --shm-success: #53d18b;
+  --shm-success-soft: #12291c;
+  --shm-warning: #f2b84b;
+  --shm-warning-soft: #2e2410;
+  --shm-danger: #ff6b6b;
+  --shm-danger-soft: #33181a;
+  --shm-info: #5aa9f0;
+  --shm-info-soft: #13253a;
+  --shm-status-idea: #8a91a3;
+  --shm-heat-0: #1a1e2a;
+  --shm-heat-1: #0e4429;
+  --shm-heat-2: #006d32;
+  --shm-heat-3: #26a641;
+  --shm-heat-4: #39d353;
+  --shm-overlay: #05060acc;
+  --shm-primary: var(--shm-accent);
+  --shm-primary-fg: #0d0f14;
+  --shm-primary-soft: color-mix(in oklab, var(--shm-primary) 18%, var(--shm-bg));
+  --shm-primary-text: color-mix(in oklab, var(--shm-primary) 65%, #ffffff);
+  --shm-shadow-sm: 0 1px 0 #00000066;
+  --shm-shadow-lg: 0 24px 48px -12px #000000b3;
+
+  --color-base-100: var(--shm-bg);
+  --color-base-200: var(--shm-surface);
+  --color-base-300: var(--shm-surface-2);
+  --color-base-content: var(--shm-fg);
+  --color-neutral: var(--shm-neutral);
+  --color-neutral-content: var(--shm-neutral-fg);
+  --color-success: var(--shm-success);
+  --color-warning: var(--shm-warning);
+  --color-error: var(--shm-danger);
+  --color-info: var(--shm-info);
+  --color-primary: var(--shm-primary);
+  --color-primary-content: var(--shm-primary-fg);
+  --color-secondary: var(--shm-primary);
+  --color-secondary-content: var(--shm-primary-fg);
+  --color-accent: var(--shm-primary);
+  --color-accent-content: var(--shm-primary-fg);
+  --color-success-content: var(--shm-on-color);
+  --color-warning-content: var(--shm-on-color);
+  --color-error-content: var(--shm-on-color);
+  --color-info-content: var(--shm-on-color);
+  --radius-selector: 6px;
+  --radius-field: 10px;
+  --radius-box: 14px;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "shmotka-light";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --shm-bg: #f6f7fa;
+  --shm-surface: #ffffff;
+  --shm-surface-2: #eef0f5;
+  --shm-fg: #12151d;
+  --shm-fg-muted: #5a6175;
+  --shm-fg-subtle: #8a91a3;
+  --shm-border: #e1e4ec;
+  --shm-border-strong: #c9ceda;
+  --shm-neutral: #12151d;
+  --shm-neutral-fg: #f6f7fa;
+  --shm-on-color: #ffffff;
+  --shm-success: #176f3d;
+  --shm-success-soft: #e6f5ec;
+  --shm-warning: #965700;
+  --shm-warning-soft: #fcf2de;
+  --shm-danger: #b92b27;
+  --shm-danger-soft: #fce8e7;
+  --shm-info: #1b64a8;
+  --shm-info-soft: #eaf2fb;
+  --shm-status-idea: #6b7286;
+  --shm-heat-0: #eef0f5;
+  --shm-heat-1: #9be9a8;
+  --shm-heat-2: #40c463;
+  --shm-heat-3: #30a14e;
+  --shm-heat-4: #216e39;
+  --shm-overlay: #12151d66;
+  --shm-primary: var(--shm-accent-light, color-mix(in oklab, var(--shm-accent) 72%, #000000));
+  --shm-primary-fg: #ffffff;
+  --shm-primary-soft: color-mix(in oklab, var(--shm-primary) 12%, #ffffff);
+  --shm-primary-text: color-mix(in oklab, var(--shm-primary) 88%, #000000);
+  --shm-shadow-sm: 0 1px 2px #12151d14;
+  --shm-shadow-lg: 0 24px 48px -16px #12151d40;
+
+  --color-base-100: var(--shm-bg);
+  --color-base-200: var(--shm-surface);
+  --color-base-300: var(--shm-surface-2);
+  --color-base-content: var(--shm-fg);
+  --color-neutral: var(--shm-neutral);
+  --color-neutral-content: var(--shm-neutral-fg);
+  --color-success: var(--shm-success);
+  --color-warning: var(--shm-warning);
+  --color-error: var(--shm-danger);
+  --color-info: var(--shm-info);
+  --color-primary: var(--shm-primary);
+  --color-primary-content: var(--shm-primary-fg);
+  --color-secondary: var(--shm-primary);
+  --color-secondary-content: var(--shm-primary-fg);
+  --color-accent: var(--shm-primary);
+  --color-accent-content: var(--shm-primary-fg);
+  --color-success-content: var(--shm-on-color);
+  --color-warning-content: var(--shm-on-color);
+  --color-error-content: var(--shm-on-color);
+  --color-info-content: var(--shm-on-color);
+  --radius-selector: 6px;
+  --radius-field: 10px;
+  --radius-box: 14px;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme inline {
+  --font-display: "Space Grotesk", Inter, system-ui, sans-serif;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-muted: var(--shm-fg-muted);
+  --color-subtle: var(--shm-fg-subtle);
+  --color-line: var(--shm-border);
+  --color-line-strong: var(--shm-border-strong);
+  --color-primary-soft: var(--shm-primary-soft);
+  --color-primary-text: var(--shm-primary-text);
+  --color-success-soft: var(--shm-success-soft);
+  --color-warning-soft: var(--shm-warning-soft);
+  --color-danger-soft: var(--shm-danger-soft);
+  --color-info-soft: var(--shm-info-soft);
+  --color-status-idea: var(--shm-status-idea);
+  --color-heat-0: var(--shm-heat-0);
+  --color-heat-1: var(--shm-heat-1);
+  --color-heat-2: var(--shm-heat-2);
+  --color-heat-3: var(--shm-heat-3);
+  --color-heat-4: var(--shm-heat-4);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+  --shadow-sm: var(--shm-shadow-sm);
+  --shadow-lg: var(--shm-shadow-lg);
+}
+
+:root {
+  --shm-sidebar-w: 240px;
+  --shm-panel-w: 340px;
+  --shm-content-max: 1200px;
+}

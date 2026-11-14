@@ -20,7 +20,10 @@ jobs:
           old=$(git show FETCH_HEAD:CHANGELOG.md | grep -m1 '^## ' || true)
           new=$(grep -m1 '^## ' CHANGELOG.md)
           if [ "$old" = "$new" ]; then echo "::error::Add a new top entry to CHANGELOG.md (one PR = one version)"; exit 1; fi
-      # Project checks (tests, linter, typecheck). Install the toolchain here once the stack is chosen,
-      # e.g. actions/setup-node, actions/setup-python or shivammathur/setup-php, then keep scripts/check.sh up to date.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
       - name: Project checks
         run: bash scripts/check.sh
