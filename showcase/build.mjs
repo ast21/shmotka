@@ -1,12 +1,12 @@
-// Builds the showcase into site/dist: index.html from snippets/*.html and docs/ai.md,
+// Builds the showcase into showcase/dist: index.html from snippets/*.html and docs/ai.md,
 // app.css compiled by Tailwind + daisyUI with the theme, exactly as a project would.
-//   node scripts/build-site.mjs
+//   npm run showcase
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { ROOT, loadTokens } from './lib/tokens.mjs';
+import { ROOT, loadTokens } from '../scripts/lib/tokens.mjs';
 
-const DIST = join(ROOT, 'site', 'dist');
+const DIST = join(ROOT, 'showcase', 'dist');
 
 export function readSnippets(dir = join(ROOT, 'snippets')) {
   return readdirSync(dir).filter((f) => f.endsWith('.html')).sort().map((file) => {
@@ -204,7 +204,7 @@ export function buildSite() {
   mkdirSync(DIST, { recursive: true });
   writeFileSync(join(DIST, 'index.html'), renderPage({ snippets, ai, tokens, version }));
   const cli = join(ROOT, 'node_modules', '@tailwindcss', 'cli', 'dist', 'index.mjs');
-  execFileSync(process.execPath, [cli, '-i', join(ROOT, 'site', 'app.css'), '-o', join(DIST, 'app.css'), '--minify'], { cwd: ROOT, stdio: 'pipe' });
+  execFileSync(process.execPath, [cli, '-i', join(ROOT, 'showcase', 'app.css'), '-o', join(DIST, 'app.css'), '--minify'], { cwd: ROOT, stdio: 'pipe' });
   return { dist: DIST, snippets };
 }
 

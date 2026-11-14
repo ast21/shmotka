@@ -1,6 +1,6 @@
 {
   "name": "shmotka",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Шмотка — тема daisyUI и шпаргалка готовых фрагментов для личных проектов: общий вид, под проект меняется только акцент.",
   "private": true,
   "type": "module",
@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
-    "site": "node scripts/build-site.mjs",
+    "showcase": "node showcase/build.mjs",
     "check": "bash scripts/check.sh"
   },
   "peerDependencies": {

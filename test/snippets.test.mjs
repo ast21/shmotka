@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { readSnippets, buildSite } from '../scripts/build-site.mjs';
+import { readSnippets, buildSite } from '../showcase/build.mjs';
 
 const snippets = readSnippets();
 

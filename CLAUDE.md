@@ -4,6 +4,7 @@
 - Что это: тема и шпаргалка готовых фрагментов daisyUI для личных проектов (идея #12 в IdeaHub). Общий вид для всех проектов,
   под проект меняется только акцент. Tailwind и daisyUI проект ставит сам — Шмотка их не содержит.
 - Стек: Node 22, без рантайм-зависимостей. Tailwind CSS v4 + daisyUI 5 — peer- и dev-зависимости.
+- Пакет — папки в корне из поля `files` (`css`, `js`, `tokens`, `snippets`, `docs`); `showcase/` — витрина, `scripts/` — инструменты темы.
 - Источник правды — `tokens/tokens.json`. `css/shmotka.css` генерируется `npm run build` и коммитится
   (проекты ставят пакет прямо из GitHub-тега, сборки при установке нет). Руками его не править.
 - Проверки: `npm ci && npm run check` — актуальность `css/shmotka.css`, контраст в обеих темах для каждого акцента, тесты.
@@ -12,7 +13,7 @@
   без `<style>`, hex-цветов и палитры Tailwind (проверяет `test/snippets.test.mjs`). Новый фрагмент сам попадает на витрину.
 - Правила для нейронок проектов — `docs/ai.md`; меняется вместе с темой и шпаргалкой.
 - Деплой: релиз = тег `vX.Y.Z`; проекты подключают `npm i github:ast21/shmotka#vX.Y.Z`.
-  Витрина `npm run site` → `site/dist` → Cloudflare Pages, проект `shmotka` (https://shmotka.pages.dev), `.github/workflows/pages.yml` после мержа.
+  Витрина `npm run showcase` → `showcase/dist` → Cloudflare Pages, проект `shmotka` (https://shmotka.pages.dev), `.github/workflows/pages.yml` после мержа.
 
 ## Как работаем (общее для всех проектов из ideahub-project-template)
 - **Одна задача — один PR — одна версия.** Каждый PR добавляет новую запись сверху в `CHANGELOG.md`:
