@@ -1,6 +1,6 @@
 {
   "name": "shmotka",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Shmotka — тема daisyUI и шпаргалка готовых фрагментов для личных проектов: общий вид, под проект меняется только акцент.",
   "private": true,
   "type": "module",
