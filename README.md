@@ -1,15 +1,15 @@
-# Шмотка
+# Shmotka
 
 Тема и шпаргалка готовых фрагментов [daisyUI](https://daisyui.com) для моих личных проектов: IdeaHub, Искра, Личные финансы и всё новое.
 Один набор токенов — общий вид у всех проектов, под проект меняется только цвет акцента.
 Тёмная тема — основа, светлая выведена из неё.
 
-Шмотка **не содержит** Tailwind и daisyUI: проект ставит их сам, рядом, а Шмотка задаёт им вид.
+Shmotka **не содержит** Tailwind и daisyUI: проект ставит их сам, рядом, а Shmotka задаёт им вид.
 
 ## Подключение
 
 ```bash
-npm i tailwindcss daisyui github:ast21/shmotka#v0.2.1
+npm i tailwindcss daisyui github:ast21/shmotka#v0.2.2
 ```
 
 В главном CSS проекта:
@@ -33,7 +33,7 @@ https://shmotka.pages.dev (собирается `npm run showcase` в `showcase/
 
 ### Laravel (Vite)
 
-`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.2.1`, в `vite.config.js` — плагин `tailwindcss()`,
+`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.2.2`, в `vite.config.js` — плагин `tailwindcss()`,
 в `resources/css/app.css` — три строки выше. В `layouts/app.blade.php`: `<html data-theme="shmotka-dark" data-accent="finance">`,
 шрифты и `@vite('resources/css/app.css')`.
 
@@ -79,7 +79,7 @@ connectTelegram({ telegramAccent: false });  // акцент проекта, т�
 
 Правило: акцент на фоне — не меньше 4.5:1 в обеих темах. Новый пресет добавляется в `tokens/tokens.json` — проверка контраста в CI проверит его сама.
 
-## Что даёт Шмотка
+## Что даёт Shmotka
 
 - **Компоненты daisyUI** в стиле системы: `btn`, `badge`, `card`, `input`, `checkbox`, `progress`, `table`, `modal`, `tabs`, `menu`, `drawer`…
   `primary`, `secondary` и `accent` daisyUI — один и тот же акцент проекта (принцип «один акцент»).

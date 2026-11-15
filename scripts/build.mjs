@@ -9,7 +9,7 @@ const OUT = join(ROOT, 'css', 'shmotka.css');
 
 export function build(tokens) {
   const L = [];
-  L.push('/* Шмотка — сгенерировано из tokens/tokens.json скриптом scripts/build.mjs. Не править руками. */');
+  L.push('/* Shmotka — сгенерировано из tokens/tokens.json скриптом scripts/build.mjs. Не править руками. */');
   L.push('/* Подключение: @import "tailwindcss"; @plugin "daisyui" { themes: false; } @import "shmotka"; */');
   L.push('');
 

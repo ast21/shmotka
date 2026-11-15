@@ -19,4 +19,4 @@ __pycache__/
 vendor/
 *.log
 
-# css/ is generated but committed: projects install Шмотка straight from a git tag
+# css/ is generated but committed: projects install Shmotka straight from a git tag
