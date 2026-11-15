@@ -9,7 +9,7 @@ Shmotka **не содержит** Tailwind и daisyUI: проект ставит
 ## Подключение
 
 ```bash
-npm i tailwindcss daisyui github:ast21/shmotka#v0.2.2
+npm i tailwindcss daisyui github:ast21/shmotka#v0.2.3
 ```
 
 В главном CSS проекта:
@@ -33,7 +33,7 @@ https://shmotka.pages.dev (собирается `npm run showcase` в `showcase/
 
 ### Laravel (Vite)
 
-`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.2.2`, в `vite.config.js` — плагин `tailwindcss()`,
+`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.2.3`, в `vite.config.js` — плагин `tailwindcss()`,
 в `resources/css/app.css` — три строки выше. В `layouts/app.blade.php`: `<html data-theme="shmotka-dark" data-accent="finance">`,
 шрифты и `@vite('resources/css/app.css')`.
 
