@@ -54,7 +54,7 @@ export function renderPage({ snippets, ai, tokens, version }) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Шмотка — витрина</title>
+  <title>Shmotka — витрина</title>
   <meta name="description" content="Тема и готовые фрагменты daisyUI для личных проектов.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="${fonts}">
@@ -67,7 +67,7 @@ export function renderPage({ snippets, ai, tokens, version }) {
 <body class="bg-base-100 text-base-content min-h-screen">
   <header class="sticky top-0 z-30 bg-base-100/90 backdrop-blur border-b border-line">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 py-3 sm:h-16 flex flex-wrap items-center gap-x-3 gap-y-2">
-      <a href="#" class="flex items-center gap-2.5 font-display font-bold text-lg mr-auto"><span class="size-2.5 rounded-sm bg-primary"></span>Шмотка <span class="font-mono text-xs font-medium text-success">v${version}</span></a>
+      <a href="#" class="flex items-center gap-2.5 font-display font-bold text-lg mr-auto"><span class="size-2.5 rounded-sm bg-primary"></span>Shmotka <span class="font-mono text-xs font-medium text-success">v${version}</span></a>
       <label class="sr-only" for="accent">Акцент</label>
       <select id="accent" class="select select-sm w-auto">
         ${presets.map(([id, p]) => `<option value="${id}">${esc(p.name)}</option>`).join('\n        ')}
@@ -95,7 +95,7 @@ export function renderPage({ snippets, ai, tokens, version }) {
 
     <main class="min-w-0 flex-1 flex flex-col gap-14">
       <section class="flex flex-col gap-3">
-        <h1 class="font-display text-4xl font-semibold tracking-tight">Шмотка</h1>
+        <h1 class="font-display text-4xl font-semibold tracking-tight">Shmotka</h1>
         <p class="text-lg text-muted max-w-prose">Тема и готовые фрагменты daisyUI для моих проектов. Общий вид у всех, под проект меняется только акцент. Всё на этой странице — стандартные классы daisyUI и Tailwind.</p>
         <div class="flex flex-wrap items-center gap-3 pt-1">
           <div class="join" role="group" aria-label="Ширина превью">
@@ -108,7 +108,7 @@ export function renderPage({ snippets, ai, tokens, version }) {
 
       <section id="start" class="flex flex-col gap-3 scroll-mt-20">
         <h2 class="font-display text-xl font-semibold">Подключение</h2>
-        <p class="text-muted max-w-prose">Tailwind и daisyUI проект ставит сам, Шмотка задаёт им вид.</p>
+        <p class="text-muted max-w-prose">Tailwind и daisyUI проект ставит сам, Shmotka задаёт им вид.</p>
         ${block('code-install', install, 'bash')}
         ${block('code-css', css, 'css')}
         <p class="text-muted max-w-prose">Шрифты — в <code class="font-mono text-sm">&lt;head&gt;</code>. Акцент — <code class="font-mono text-sm">data-accent="ideahub|iskra|finance"</code> на <code class="font-mono text-sm">&lt;html&gt;</code> или своя переменная <code class="font-mono text-sm">--shm-accent</code>. Telegram Mini App:</p>
@@ -117,7 +117,7 @@ export function renderPage({ snippets, ai, tokens, version }) {
 
       <section id="ai" class="flex flex-col gap-3 scroll-mt-20">
         <h2 class="font-display text-xl font-semibold">Для нейронок</h2>
-        <p class="text-muted max-w-prose">Скопируйте в <code class="font-mono text-sm">CLAUDE.md</code> проекта — нейронка будет собирать интерфейс в стиле Шмотки. Файл также лежит в пакете: <code class="font-mono text-sm">node_modules/shmotka/docs/ai.md</code>.</p>
+        <p class="text-muted max-w-prose">Скопируйте в <code class="font-mono text-sm">CLAUDE.md</code> проекта — нейронка будет собирать интерфейс в стиле Shmotka. Файл также лежит в пакете: <code class="font-mono text-sm">node_modules/shmotka/docs/ai.md</code>.</p>
         <details class="collapse collapse-arrow border border-line bg-base-200">
           <summary class="collapse-title text-sm font-medium">Правила для нейронки</summary>
           <div class="collapse-content">${block('code-ai', ai, 'md')}</div>

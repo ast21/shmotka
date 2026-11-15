@@ -1,4 +1,4 @@
-// The cheat sheet must stay "daisyUI + Tailwind + Шмотка utilities only" and the showcase must build.
+// The cheat sheet must stay "daisyUI + Tailwind + Shmotka utilities only" and the showcase must build.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';

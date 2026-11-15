@@ -18,7 +18,7 @@ function fakeEnv(colorScheme, themeParams) {
   return { doc, props, handlers, calls, webApp };
 }
 
-test('тема Telegram становится темой Шмотки и меняется вместе с ней', () => {
+test('тема Telegram становится темой Shmotka и меняется вместе с ней', () => {
   const env = fakeEnv('dark', {});
   connectTelegram({ webApp: env.webApp, document: env.doc, paintChrome: false });
   assert.equal(env.doc.documentElement.dataset.theme, 'shmotka-dark');

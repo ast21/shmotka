@@ -1,7 +1,7 @@
 {
   "name": "shmotka",
-  "version": "0.2.1",
-  "description": "Шмотка — тема daisyUI и шпаргалка готовых фрагментов для личных проектов: общий вид, под проект меняется только акцент.",
+  "version": "0.2.2",
+  "description": "Shmotka — тема daisyUI и шпаргалка готовых фрагментов для личных проектов: общий вид, под проект меняется только акцент.",
   "private": true,
   "type": "module",
   "repository": "github:ast21/shmotka",

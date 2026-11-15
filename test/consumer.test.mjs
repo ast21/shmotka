@@ -1,4 +1,4 @@
-// Builds a tiny "project" that installs Шмотка the way real projects do
+// Builds a tiny "project" that installs Shmotka the way real projects do
 // (@import "tailwindcss"; @plugin "daisyui"; @import "shmotka";) and checks the compiled CSS.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -26,7 +26,7 @@ test('проект импортирует shmotka/telegram и tokens.json по �
       + "console.log(typeof t.connectTelegram, j.default.name);");
     return execFileSync(process.execPath, ['probe.mjs'], { cwd: dir, encoding: 'utf8' }).trim();
   });
-  assert.equal(out, 'function Шмотка');
+  assert.equal(out, 'function Shmotka');
 });
 
 function compile(projectCss, html) {
@@ -69,7 +69,7 @@ test('акцент проекта управляет цветом primary', () =
   assert.match(css, /\[data-accent=["']?finance["']?\]/);
 });
 
-test('компоненты daisyUI и утилиты Шмотки попадают в сборку', () => {
+test('компоненты daisyUI и утилиты Shmotka попадают в сборку', () => {
   for (const cls of ['.btn-primary', '.badge-success', '.text-muted', '.bg-primary-soft', '.rounded-lg', '.font-display', '.border-line']) {
     assert.ok(css.includes(cls), `нет ${cls}`);
   }

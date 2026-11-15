@@ -1,6 +1,6 @@
-// Шмотка × Telegram Mini App.
-// Тема Telegram (светлая/тёмная) становится темой Шмотки, цвет кнопки Telegram — акцентом,
-// а шапка и фон окна Telegram красятся в фон Шмотки. Следит за сменой темы в Telegram.
+// Shmotka × Telegram Mini App.
+// Тема Telegram (светлая/тёмная) становится темой Shmotka, цвет кнопки Telegram — акцентом,
+// а шапка и фон окна Telegram красятся в фон Shmotka. Следит за сменой темы в Telegram.
 //
 //   import { connectTelegram } from 'shmotka/telegram';
 //   connectTelegram();                              // акцент — цвет кнопки Telegram
@@ -9,7 +9,7 @@
 /**
  * @param {object} [options]
  * @param {boolean} [options.telegramAccent=true] брать акцент из цвета кнопки Telegram
- * @param {boolean} [options.paintChrome=true] красить шапку и фон окна Telegram в фон Шмотки
+ * @param {boolean} [options.paintChrome=true] красить шапку и фон окна Telegram в фон Shmotka
  * @param {any} [options.webApp] объект Telegram.WebApp (по умолчанию window.Telegram.WebApp)
  * @param {Document} [options.document]
  * @returns {() => void} отключить слежение за темой
