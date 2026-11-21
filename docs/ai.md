@@ -15,7 +15,7 @@
 
 Шрифты Space Grotesk, Inter, JetBrains Mono — тегом `<link>` Google Fonts в `<head>`.
 Тема: `shmotka-dark` / `shmotka-light` в `data-theme` на `<html>`; без атрибута — по настройке системы.
-Акцент проекта: `data-accent="ideahub|iskra|finance"` на `<html>` или `--shm-accent` в CSS. Telegram Mini App: `import { connectTelegram } from 'shmotka/telegram'; connectTelegram();`.
+Акцент проекта: `data-accent="ideahub|iskra|finance|inbox"` на `<html>` или `--shm-accent` в CSS. Telegram Mini App: `import { connectTelegram } from 'shmotka/telegram'; connectTelegram();`.
 
 ## Цвет
 
