@@ -3,11 +3,12 @@
 
 /* Акцент проекта. Свой цвет: :root { --shm-accent: #...; --shm-accent-light: #...; } (второй по желанию),
    цвет текста на акценте — --shm-accent-fg (по желанию). Telegram Mini App: shmotka/telegram.js.
-   Готовые акценты: <html data-accent="ideahub|iskra|finance">. */
+   Готовые акценты: <html data-accent="ideahub|iskra|finance|inbox">. */
 :where(:root) { --shm-accent: #8b7dff; }
 [data-accent="ideahub"] { --shm-accent: #8b7dff; --shm-accent-light: #5b4bdb; } /* IdeaHub, фиолетовый */
 [data-accent="iskra"] { --shm-accent: #5aa9ff; --shm-accent-light: #1f74ba; } /* Искра, синий */
 [data-accent="finance"] { --shm-accent: #3ccfb4; --shm-accent-light: #0f7f6c; } /* Личные финансы, бирюзовый */
+[data-accent="inbox"] { --shm-accent: #ff8a3d; --shm-accent-light: #b34a00; } /* Inbox, оранжевый */
 
 @plugin "daisyui/theme" {
   name: "shmotka-dark";

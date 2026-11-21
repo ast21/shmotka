@@ -111,7 +111,7 @@ export function renderPage({ snippets, ai, tokens, version }) {
         <p class="text-muted max-w-prose">Tailwind и daisyUI проект ставит сам, Shmotka задаёт им вид.</p>
         ${block('code-install', install, 'bash')}
         ${block('code-css', css, 'css')}
-        <p class="text-muted max-w-prose">Шрифты — в <code class="font-mono text-sm">&lt;head&gt;</code>. Акцент — <code class="font-mono text-sm">data-accent="ideahub|iskra|finance"</code> на <code class="font-mono text-sm">&lt;html&gt;</code> или своя переменная <code class="font-mono text-sm">--shm-accent</code>. Telegram Mini App:</p>
+        <p class="text-muted max-w-prose">Шрифты — в <code class="font-mono text-sm">&lt;head&gt;</code>. Акцент — <code class="font-mono text-sm">data-accent="ideahub|iskra|finance|inbox"</code> на <code class="font-mono text-sm">&lt;html&gt;</code> или своя переменная <code class="font-mono text-sm">--shm-accent</code>. Telegram Mini App:</p>
         ${block('code-tg', "import { connectTelegram } from 'shmotka/telegram';\nconnectTelegram();", 'js')}
       </section>
 
