@@ -17,7 +17,7 @@ export function build(tokens) {
   const def = tokens.accent.presets[tokens.accent.default];
   L.push('/* Акцент проекта. Свой цвет: :root { --shm-accent: #...; --shm-accent-light: #...; } (второй по желанию),');
   L.push('   цвет текста на акценте — --shm-accent-fg (по желанию). Telegram Mini App: shmotka/telegram.js.');
-  L.push('   Готовые акценты: <html data-accent="ideahub|iskra|finance|inbox">. */');
+  L.push('   Готовые акценты: <html data-accent="ideahub|iskra|finance|inbox|til">. */');
   L.push(`:where(:root) { --shm-accent: ${def.dark}; }`);
   for (const [id, p] of Object.entries(tokens.accent.presets)) {
     L.push(`[data-accent="${id}"] { --shm-accent: ${p.dark}; --shm-accent-light: ${p.light}; } /* ${p.name} */`);
