@@ -1,7 +1,7 @@
 // Builds the showcase into showcase/dist: index.html from snippets/*.html and docs/ai.md,
 // app.css compiled by Tailwind + daisyUI with the theme, exactly as a project would.
 //   npm run showcase
-import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync, cpSync } from 'node:fs';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { ROOT, loadTokens } from '../scripts/lib/tokens.mjs';
@@ -22,7 +22,6 @@ export function readSnippets(dir = join(ROOT, 'snippets')) {
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 export function renderPage({ snippets, ai, tokens, version }) {
-  const fonts = tokens.fonts.googleFontsUrl;
   const presets = Object.entries(tokens.accent.presets);
   const install = `npm i tailwindcss daisyui github:ast21/shmotka#v${version}`;
   const css = '@import "tailwindcss";\n@plugin "daisyui" { themes: false; }\n@import "shmotka";';
@@ -56,8 +55,6 @@ export function renderPage({ snippets, ai, tokens, version }) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shmotka — витрина</title>
   <meta name="description" content="Тема и готовые фрагменты daisyUI для личных проектов.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="${fonts}">
   <link rel="stylesheet" href="app.css">
   <script>
     try { const t = localStorage.getItem('shm-theme'); if (t) document.documentElement.dataset.theme = t;
@@ -146,7 +143,7 @@ ${cards}
     for (const f of frames) {
       const html = document.querySelector('template[data-src="' + f.dataset.snippet + '"]').innerHTML;
       f.srcdoc = '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
-        + '<link rel="stylesheet" href="${fonts}"><link rel="stylesheet" href="' + css + '"></head>'
+        + '<link rel="stylesheet" href="' + css + '"></head>'
         + '<body class="bg-base-100 text-base-content">' + html + '</body></html>';
       f.addEventListener('load', () => {
         syncFrame(f); fit(f);
@@ -203,6 +200,7 @@ export function buildSite() {
   rmSync(DIST, { recursive: true, force: true });
   mkdirSync(DIST, { recursive: true });
   writeFileSync(join(DIST, 'index.html'), renderPage({ snippets, ai, tokens, version }));
+  cpSync(join(ROOT, 'fonts'), join(DIST, 'fonts'), { recursive: true });
   const cli = join(ROOT, 'node_modules', '@tailwindcss', 'cli', 'dist', 'index.mjs');
   execFileSync(process.execPath, [cli, '-i', join(ROOT, 'showcase', 'app.css'), '-o', join(DIST, 'app.css'), '--minify'], { cwd: ROOT, stdio: 'pipe' });
   return { dist: DIST, snippets };
