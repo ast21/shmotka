@@ -13,7 +13,7 @@
 @import "shmotka";
 ```
 
-Шрифты Space Grotesk, Inter, JetBrains Mono — тегом `<link>` Google Fonts в `<head>`.
+Шрифты Space Grotesk, Inter, JetBrains Mono — своими файлами: `@import "shmotka/fonts";` в CSS и `npx shmotka-fonts public/fonts` (сайт отдаёт их по `/fonts/`). Google Fonts не подключать.
 Тема: `shmotka-dark` / `shmotka-light` в `data-theme` на `<html>`; без атрибута — по настройке системы.
 Акцент проекта: `data-accent="ideahub|iskra|finance|inbox|til"` на `<html>` или `--shm-accent` в CSS. Telegram Mini App: `import { connectTelegram } from 'shmotka/telegram'; connectTelegram();`.
 

@@ -2,5 +2,6 @@
 @import "tailwindcss" source(none);
 @plugin "daisyui" { themes: false; }
 @import "../css/shmotka.css";
+@import "../css/fonts.css";
 @source "./dist/index.html";
 @source "../snippets";

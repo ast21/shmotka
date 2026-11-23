@@ -9,7 +9,7 @@ Shmotka **не содержит** Tailwind и daisyUI: проект ставит
 ## Подключение
 
 ```bash
-npm i tailwindcss daisyui github:ast21/shmotka#v0.2.4
+npm i tailwindcss daisyui github:ast21/shmotka#v0.5.0
 ```
 
 В главном CSS проекта:
@@ -20,22 +20,28 @@ npm i tailwindcss daisyui github:ast21/shmotka#v0.2.4
 @import "shmotka";
 ```
 
-Шрифты — в `<head>`:
+Шрифты — своими файлами, без Google Fonts. В тот же CSS:
 
-```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
+```css
+@import "shmotka/fonts";   /* Inter, JetBrains Mono, Space Grotesk — @font-face с адресами /fonts/… */
 ```
 
-Обновление — сменить тег в `package.json` (`#v0.3.0`) и `npm i`.
+и скопировать файлы туда, откуда сайт отдаёт `/fonts/` (в CI — то же с `--check`):
+
+```bash
+npx shmotka-fonts public/fonts
+```
+
+Обновление — сменить тег в `package.json` (`#v0.5.0`), `npm i` и `npx shmotka-fonts public/fonts`.
 
 **Витрина** со всеми компонентами и фрагментами в обеих темах, переключателем акцента и кнопкой «скопировать код» —
 https://shmotka.pages.dev (собирается `npm run showcase` в `showcase/dist`).
 
 ### Laravel (Vite)
 
-`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.2.4`, в `vite.config.js` — плагин `tailwindcss()`,
-в `resources/css/app.css` — три строки выше. В `layouts/app.blade.php`: `<html data-theme="shmotka-dark" data-accent="finance">`,
-шрифты и `@vite('resources/css/app.css')`.
+`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.5.0`, в `vite.config.js` — плагин `tailwindcss()`,
+в `resources/css/app.css` — строки выше, шрифты — `npx shmotka-fonts public/fonts`.
+В `layouts/app.blade.php`: `<html data-theme="shmotka-dark" data-accent="finance">` и `@vite('resources/css/app.css')`.
 
 ### React (Vite)
 
