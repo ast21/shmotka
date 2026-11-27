@@ -9,7 +9,7 @@ Shmotka **не содержит** Tailwind и daisyUI: проект ставит
 ## Подключение
 
 ```bash
-npm i tailwindcss daisyui github:ast21/shmotka#v0.5.0
+npm i tailwindcss daisyui github:ast21/shmotka#v0.6.0
 ```
 
 В главном CSS проекта:
@@ -32,14 +32,14 @@ npm i tailwindcss daisyui github:ast21/shmotka#v0.5.0
 npx shmotka-fonts public/fonts
 ```
 
-Обновление — сменить тег в `package.json` (`#v0.5.0`), `npm i` и `npx shmotka-fonts public/fonts`.
+Обновление — сменить тег в `package.json` (`#v0.6.0`), `npm i` и `npx shmotka-fonts public/fonts`.
 
 **Витрина** со всеми компонентами и фрагментами в обеих темах, переключателем акцента и кнопкой «скопировать код» —
 https://shmotka.pages.dev (собирается `npm run showcase` в `showcase/dist`).
 
 ### Laravel (Vite)
 
-`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.5.0`, в `vite.config.js` — плагин `tailwindcss()`,
+`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.6.0`, в `vite.config.js` — плагин `tailwindcss()`,
 в `resources/css/app.css` — строки выше, шрифты — `npx shmotka-fonts public/fonts`.
 В `layouts/app.blade.php`: `<html data-theme="shmotka-dark" data-accent="finance">` и `@vite('resources/css/app.css')`.
 
@@ -54,6 +54,31 @@ import { connectTelegram } from 'shmotka/telegram';
 connectTelegram();                           // тема и акцент — из Telegram, шапка окна — в цвет фона
 connectTelegram({ telegramAccent: false });  // акцент проекта, тема — из Telegram
 ```
+
+### PWA: метка, проверка и обновление
+
+Для сайтов, которые ставятся на телефон (манифест + service worker). Модуль по желанию: подключается и убирается целиком.
+
+- Метка **PWA** рядом с версией. Нажатие на неё — «Проверить обновления».
+- Сам узнаёт о новой версии: при открытии, при возврате в приложение, раз в 30 минут и когда вернулась сеть.
+  Новая версия — когда `/health` отвечает `{ "version": "…" }` не той, что вшита в страницу (`data-version`).
+  Запрос идёт без кэша; service worker проекта должен пропускать `/health` в сеть.
+- Плашка «Вышла версия X» с кнопкой «Обновить»: скачивает новый service worker, ждёт его (до 5 с) и перезагружает страницу.
+
+Подключить:
+
+1. Разметка — фрагмент «PWA: версия и обновление» (`snippets/13-pwa.html`): `data-shm-pwa` с `data-version`, кнопка
+   `data-shm-pwa-check`, подпись `data-shm-pwa-status` и плашка `data-shm-pwa-update` (обе с `hidden`), внутри — `data-shm-pwa-latest`
+   и кнопка `data-shm-pwa-apply`. Свой адрес проверки — `data-health="/version"`.
+2. Скрипт: `npx shmotka-pwa public/pwa.js` (в CI — то же с `--check`) и `<script type="module" src="/pwa.js"></script>`.
+   Можно положить `/pwa.js` в кэш service worker, тогда без сети страница не ругается на скрипт.
+3. Отменить обновление (например, не отправлен текст):
+
+```js
+addEventListener('shmotka:pwa-update', (e) => { if (draft()) e.preventDefault(); });
+```
+
+Убрать: разметку с `data-shm-pwa*`, тег `<script src="/pwa.js">`, файл `public/pwa.js`, шаг `shmotka-pwa` в сборке и `/pwa.js` из кэша service worker.
 
 ## Темы
 

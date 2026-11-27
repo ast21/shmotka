@@ -19,14 +19,14 @@ function withProject(fn) {
   }
 }
 
-test('проект импортирует shmotka/telegram и tokens.json по именам пакета', () => {
+test('проект импортирует shmotka/telegram, shmotka/pwa и tokens.json по именам пакета', () => {
   const out = withProject((dir) => {
     writeFileSync(join(dir, 'probe.mjs'),
-      "const t = await import('shmotka/telegram'); const j = await import('shmotka/tokens.json', { with: { type: 'json' } });"
-      + "console.log(typeof t.connectTelegram, j.default.name);");
+      "const t = await import('shmotka/telegram'); const p = await import('shmotka/pwa'); const j = await import('shmotka/tokens.json', { with: { type: 'json' } });"
+      + "console.log(typeof t.connectTelegram, typeof p.connectPwa, j.default.name);");
     return execFileSync(process.execPath, ['probe.mjs'], { cwd: dir, encoding: 'utf8' }).trim();
   });
-  assert.equal(out, 'function Shmotka');
+  assert.equal(out, 'function function Shmotka');
 });
 
 function compile(projectCss, html) {

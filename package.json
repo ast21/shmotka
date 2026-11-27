@@ -1,6 +1,6 @@
 {
   "name": "shmotka",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Shmotka — тема daisyUI и шпаргалка готовых фрагментов для личных проектов: общий вид, под проект меняется только акцент.",
   "private": true,
   "type": "module",
@@ -17,11 +17,13 @@
     },
     "./fonts/*": "./fonts/*",
     "./telegram": "./js/telegram.js",
+    "./pwa": "./js/pwa.js",
     "./tokens.json": "./tokens/tokens.json",
     "./package.json": "./package.json"
   },
   "bin": {
-    "shmotka-fonts": "bin/shmotka-fonts.mjs"
+    "shmotka-fonts": "bin/shmotka-fonts.mjs",
+    "shmotka-pwa": "bin/shmotka-pwa.mjs"
   },
   "files": [
     "css",
