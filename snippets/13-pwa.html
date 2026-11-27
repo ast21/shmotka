@@ -1,0 +1,16 @@
+<!-- @snippet title="PWA: версия и обновление" about="Для сайтов, которые ставятся на телефон. Метка PWA рядом с версией, нажатие на неё проверяет обновления; новая версия показывает плашку с кнопкой «Обновить». Оживляет shmotka/pwa (README → PWA). В проекте добавьте hidden плашке и подписи data-shm-pwa-status — их показывает скрипт." mobile="true" -->
+<div class="bg-base-100 text-base-content p-4 flex flex-col gap-4">
+  <header data-shm-pwa data-version="1.2.0" class="flex flex-wrap items-center gap-x-2 gap-y-1">
+    <h1 class="font-display text-2xl font-bold">Финансы</h1>
+    <button type="button" data-shm-pwa-check title="Проверить обновления" aria-label="Версия 1.2.0, приложение PWA. Проверить обновления"
+      class="inline-flex items-center gap-1.5 rounded-full bg-base-200 border border-line pl-2.5 pr-1 py-0.5 font-mono text-xs cursor-pointer hover:bg-base-300">
+      <span class="text-success">v1.2.0</span>
+      <span class="rounded-full bg-primary-soft text-primary-text px-1.5 text-[10px] leading-4 font-semibold tracking-wider">PWA</span>
+    </button>
+    <span data-shm-pwa-status role="status" class="font-mono text-xs text-muted">последняя версия</span>
+  </header>
+  <div data-shm-pwa-update role="status" class="rounded-xl bg-primary-soft p-4 flex items-center justify-between gap-3">
+    <span class="text-primary-text">Вышла версия <span data-shm-pwa-latest class="font-mono font-semibold">1.2.1</span></span>
+    <button type="button" data-shm-pwa-apply class="btn btn-primary btn-sm">Обновить</button>
+  </div>
+</div>
