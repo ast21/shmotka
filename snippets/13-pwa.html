@@ -1,11 +1,11 @@
-<!-- @snippet title="PWA: версия и обновление" about="Для сайтов, которые ставятся на телефон. Метка PWA рядом с версией, нажатие на неё проверяет обновления; новая версия показывает плашку с кнопкой «Обновить». Оживляет shmotka/pwa (README → PWA). В проекте добавьте hidden плашке и подписи data-shm-pwa-status — их показывает скрипт." mobile="true" -->
+<!-- @snippet title="PWA: версия и обновление" about="Для сайтов, которые ставятся на телефон. Логотип PWA рядом с версией (P и A — цвет текста, W — акцент проекта), нажатие на неё проверяет обновления; новая версия показывает плашку с кнопкой «Обновить». Оживляет shmotka/pwa (README → PWA). В проекте добавьте hidden плашке и подписи data-shm-pwa-status — их показывает скрипт." mobile="true" -->
 <div class="bg-base-100 text-base-content p-4 flex flex-col gap-4">
   <header data-shm-pwa data-version="1.2.0" class="flex flex-wrap items-center gap-x-2 gap-y-1">
     <h1 class="font-display text-2xl font-bold">Финансы</h1>
     <button type="button" data-shm-pwa-check title="Проверить обновления" aria-label="Версия 1.2.0, приложение PWA. Проверить обновления"
-      class="inline-flex items-center gap-1.5 rounded-full bg-base-200 border border-line pl-2.5 pr-1 py-0.5 font-mono text-xs cursor-pointer hover:bg-base-300">
+      class="inline-flex items-center gap-1.5 rounded-full bg-base-200 border border-line px-2.5 py-0.5 font-mono text-xs cursor-pointer hover:bg-base-300">
       <span class="text-success">v1.2.0</span>
-      <span class="rounded-full bg-primary-soft text-primary-text px-1.5 text-[10px] leading-4 font-semibold tracking-wider">PWA</span>
+      <svg viewBox="0 0 1952 735" class="h-2.5 w-auto text-base-content" aria-hidden="true"><path fill="currentColor" d="M1437,603L1493,461L1656,461L1579,244L1675,0L1952,735L1748,735L1701,603L1437,603ZM186,483L307,483C344,483 377,479 405,470L437,374L524,105C517,94 510,84 501,75C456,25 391,0 304,0L0,0L0,735L186,735L186,483ZM347,169C364,187 373,210 373,240C373,270 365,293 350,311C333,330 302,340 256,340L186,340L186,143L257,143C299,143 329,151 347,169Z"/><path class="fill-primary" d="M1262,735L1559,0L1362,0L1160,475L1016,0L864,0L710,475L601,259L502,563L602,735L795,735L935,309L1069,735L1262,735Z"/></svg>
     </button>
     <span data-shm-pwa-status role="status" class="font-mono text-xs text-muted">последняя версия</span>
   </header>

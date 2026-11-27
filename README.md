@@ -9,7 +9,7 @@ Shmotka **не содержит** Tailwind и daisyUI: проект ставит
 ## Подключение
 
 ```bash
-npm i tailwindcss daisyui github:ast21/shmotka#v0.6.0
+npm i tailwindcss daisyui github:ast21/shmotka#v0.6.1
 ```
 
 В главном CSS проекта:
@@ -32,14 +32,14 @@ npm i tailwindcss daisyui github:ast21/shmotka#v0.6.0
 npx shmotka-fonts public/fonts
 ```
 
-Обновление — сменить тег в `package.json` (`#v0.6.0`), `npm i` и `npx shmotka-fonts public/fonts`.
+Обновление — сменить тег в `package.json` (`#v0.6.1`), `npm i` и `npx shmotka-fonts public/fonts`.
 
 **Витрина** со всеми компонентами и фрагментами в обеих темах, переключателем акцента и кнопкой «скопировать код» —
 https://shmotka.pages.dev (собирается `npm run showcase` в `showcase/dist`).
 
 ### Laravel (Vite)
 
-`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.6.0`, в `vite.config.js` — плагин `tailwindcss()`,
+`npm i -D tailwindcss @tailwindcss/vite daisyui github:ast21/shmotka#v0.6.1`, в `vite.config.js` — плагин `tailwindcss()`,
 в `resources/css/app.css` — строки выше, шрифты — `npx shmotka-fonts public/fonts`.
 В `layouts/app.blade.php`: `<html data-theme="shmotka-dark" data-accent="finance">` и `@vite('resources/css/app.css')`.
 
@@ -59,7 +59,8 @@ connectTelegram({ telegramAccent: false });  // акцент проекта, т�
 
 Для сайтов, которые ставятся на телефон (манифест + service worker). Модуль по желанию: подключается и убирается целиком.
 
-- Метка **PWA** рядом с версией. Нажатие на неё — «Проверить обновления».
+- Логотип **PWA** рядом с версией (P и A — цвет текста, W — акцент проекта). Нажатие на версию — «Проверить обновления».
+  Логотип — [webmaxru/progressive-web-apps-logo](https://github.com/webmaxru/progressive-web-apps-logo), автор разрешает свободно использовать и менять.
 - Сам узнаёт о новой версии: при открытии, при возврате в приложение, раз в 30 минут и когда вернулась сеть.
   Новая версия — когда `/health` отвечает `{ "version": "…" }` не той, что вшита в страницу (`data-version`).
   Запрос идёт без кэша; service worker проекта должен пропускать `/health` в сеть.
