@@ -16,7 +16,7 @@
 Шрифты Space Grotesk, Inter, JetBrains Mono — своими файлами: `@import "shmotka/fonts";` в CSS и `npx shmotka-fonts public/fonts` (сайт отдаёт их по `/fonts/`). Google Fonts не подключать.
 Тема: `shmotka-dark` / `shmotka-light` в `data-theme` на `<html>`; без атрибута — по настройке системы.
 Акцент проекта: `data-accent="ideahub|iskra|finance|inbox|til"` на `<html>` или `--shm-accent` в CSS. Telegram Mini App: `import { connectTelegram } from 'shmotka/telegram'; connectTelegram();`.
-PWA (сайт ставится на телефон): метка «PWA» у версии и проверка обновлений — фрагмент «PWA: версия и обновление» + `/pwa.js` из `npx shmotka-pwa public/pwa.js` (README → PWA). Сайт без PWA метку не показывает.
+PWA (сайт ставится на телефон): логотип PWA у версии и проверка обновлений — фрагмент «PWA: версия и обновление» + `/pwa.js` из `npx shmotka-pwa public/pwa.js` (README → PWA). Сайт без PWA метку не показывает.
 
 ## Цвет
 
