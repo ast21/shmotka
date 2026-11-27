@@ -39,18 +39,17 @@ export function connectPwa(options = {}) {
   const root = doc?.querySelector('[data-shm-pwa]');
   if (!root || !get) return null;
 
+  // The version of the page that was loaded: its scripts and styles. Parts are looked up on every use,
+  // so a project that swaps screens in place (with a new header) keeps working.
   const current = root.dataset.version;
   const health = root.dataset.health || '/health';
   const part = (name) => doc.querySelector(`[data-shm-pwa-${name}]`);
-  const checkBtn = part('check');
-  const status = part('status');
-  const banner = part('update');
-  const latestEl = part('latest');
-  const applyBtn = part('apply');
+  let found = null;
 
   let lastCheck = 0;
   let statusTimer;
   const say = (text, keep = false) => {
+    const status = part('status');
     if (!status) return;
     clearTimeout(statusTimer);
     status.textContent = text;
@@ -81,14 +80,22 @@ export function connectPwa(options = {}) {
         if (manual) say('последняя версия');
         return 'latest';
       }
-      if (latestEl) latestEl.textContent = v;
-      if (banner) banner.hidden = false;
+      found = v;
+      showFound();
       say('');
       return 'update';
     } catch {
       if (manual) say('не удалось проверить');
       return 'error';
     }
+  }
+
+  function showFound() {
+    const banner = part('update');
+    const latestEl = part('latest');
+    if (!found || !banner) return;
+    if (latestEl && latestEl.textContent !== found) latestEl.textContent = found;
+    if (banner.hidden) banner.hidden = false;
   }
 
   function workerChanged(sw) {
@@ -102,6 +109,7 @@ export function connectPwa(options = {}) {
   async function update() {
     const event = new (win.CustomEvent || CustomEvent)('shmotka:pwa-update', { cancelable: true });
     if (win.dispatchEvent && !win.dispatchEvent(event)) return false;
+    const applyBtn = part('apply');
     if (applyBtn) applyBtn.disabled = true;
     const sw = nav?.serviceWorker;
     try {
@@ -115,12 +123,18 @@ export function connectPwa(options = {}) {
     return true;
   }
 
-  const onClick = () => check(true);
-  const onApply = () => update();
+  const onClick = (e) => {
+    const t = e.target;
+    if (t?.closest?.('[data-shm-pwa-check]')) check(true);
+    else if (t?.closest?.('[data-shm-pwa-apply]')) update();
+  };
   const onVisible = () => { if (doc.visibilityState === 'visible' && Date.now() - lastCheck > MINUTE) check(); };
   const onOnline = () => check();
-  checkBtn?.addEventListener('click', onClick);
-  applyBtn?.addEventListener('click', onApply);
+  doc.addEventListener('click', onClick);
+  // a swapped-in screen comes with the plate hidden again: show the found version there too
+  const watcher = globalThis.MutationObserver && doc.body
+    ? new globalThis.MutationObserver(() => { if (found) showFound(); }) : null;
+  watcher?.observe(doc.body, { childList: true, subtree: true });
   doc.addEventListener('visibilitychange', onVisible);
   win.addEventListener?.('online', onOnline);
   const timer = setInterval(() => { if (doc.visibilityState !== 'hidden') check(); }, interval);
@@ -132,8 +146,8 @@ export function connectPwa(options = {}) {
     stop() {
       clearInterval(timer);
       clearTimeout(statusTimer);
-      checkBtn?.removeEventListener('click', onClick);
-      applyBtn?.removeEventListener('click', onApply);
+      watcher?.disconnect();
+      doc.removeEventListener('click', onClick);
       doc.removeEventListener('visibilitychange', onVisible);
       win.removeEventListener?.('online', onOnline);
     },

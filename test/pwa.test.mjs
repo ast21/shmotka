@@ -7,18 +7,15 @@ import { spawnSync } from 'node:child_process';
 import { connectPwa } from '../js/pwa.js';
 import { ROOT } from '../scripts/lib/tokens.mjs';
 
-function el(dataset = {}) {
-  const handlers = {};
-  return {
-    dataset, hidden: true, textContent: '', disabled: false, handlers,
-    addEventListener: (e, fn) => { handlers[e] = fn; },
-    removeEventListener: (e) => { delete handlers[e]; },
-  };
+function el(dataset = {}, name = '') {
+  const self = { dataset, hidden: true, textContent: '', disabled: false };
+  self.closest = (sel) => (sel === `[data-shm-pwa-${name}]` ? self : null);
+  return self;
 }
 
 function fakeEnv({ version = '1.2.0', latest = '1.2.0', online = true, ok = true, worker } = {}) {
   const parts = {
-    '': el({ version }), check: el(), status: el(), update: el(), latest: el(), apply: el(),
+    '': el({ version }), check: el({}, 'check'), status: el(), update: el(), latest: el(), apply: el({}, 'apply'),
   };
   const docHandlers = {};
   const doc = {
@@ -88,9 +85,26 @@ test('нажатие на версию проверяет сразу', async (t)
   t.after(() => pwa.stop());
   await tick();
   env.latest = '1.2.1';
-  await env.parts.check.handlers.click();
+  env.docHandlers.click({ target: env.parts.check });
+  await tick(); await tick();
   assert.equal(env.parts.update.hidden, false);
   assert.equal(env.parts.latest.textContent, '1.2.1');
+});
+
+test('экран подменили вместе с шапкой — кнопки и плашка работают на новом', async (t) => {
+  const env = fakeEnv();
+  const pwa = env.connect();
+  t.after(() => pwa.stop());
+  await tick();
+  for (const name of ['check', 'status', 'update', 'latest', 'apply']) env.parts[name] = el({}, name);
+  env.latest = '1.3.0';
+  env.docHandlers.click({ target: env.parts.check });
+  await tick(); await tick();
+  assert.equal(env.parts.update.hidden, false);
+  assert.equal(env.parts.latest.textContent, '1.3.0');
+  env.docHandlers.click({ target: env.parts.apply });
+  await tick(); await tick();
+  assert.equal(env.reloads.length, 1);
 });
 
 test('без сети и при ошибке входа — понятная подпись, без плашки', async (t) => {
@@ -139,7 +153,8 @@ test('без service worker «Обновить» просто перезагру
   const env = fakeEnv({ latest: '1.3.0' });
   const pwa = env.connect();
   t.after(() => pwa.stop());
-  await env.parts.apply.handlers.click();
+  env.docHandlers.click({ target: env.parts.apply });
+  await tick(); await tick();
   assert.equal(env.reloads.length, 1);
 });
 
